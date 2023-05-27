@@ -62,9 +62,13 @@ module RubyWasm
       system "curl -L https://www.openssl.org/source/openssl-#{OPENSSL_VERSION}.tar.gz | tar xz",
              chdir: File.dirname(product_build_dir)
       # Apply patches under ./patches/openssl
-      Dir.glob(File.join(__dir__, "../../../..", "patches", "openssl", "*.patch")).each do |patch|
-        system "patch -p1 < #{patch}", chdir: product_build_dir
-      end
+      Dir
+        .glob(
+          File.join(__dir__, "../../../..", "patches", "openssl", "*.patch")
+        )
+        .each do |patch|
+          system "patch -p1 < #{patch}", chdir: product_build_dir
+        end
 
       system "./Configure #{configure_args.join(" ")}", chdir: product_build_dir
       # Use "install_sw" instead of "install" because it tries to install docs and it's very slow.

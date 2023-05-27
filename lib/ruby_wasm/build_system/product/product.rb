@@ -3,6 +3,10 @@ module RubyWasm
     def name
       raise NotImplementedError, "identifiable product name must be implemented"
     end
+
+    def system(*args, **kwargs)
+      Kernel.system(*args, **kwargs, exception: true)
+    end
   end
 
   class AutoconfProduct < BuildProduct

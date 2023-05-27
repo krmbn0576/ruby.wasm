@@ -1,0 +1,16 @@
+From: Yuta Saito <kateinoigakukun@gmail.com>
+Date: Sun, 28 May 2023 06:24:24 +0900
+Subject: [PATCH] [WASI] Remove use of undefined getuid/geteuid/getegid/getgid
+
+--- a/crypto/uid.c        2023-05-27 21:13:29.391597678 +0000
++++ b/crypto/uid.c        2023-05-27 21:12:26.403666465 +0000
+@@ -10,7 +10,7 @@
+ #include <openssl/crypto.h>
+ #include <openssl/opensslconf.h>
+
+-#if defined(OPENSSL_SYS_WIN32) || defined(OPENSSL_SYS_VXWORKS) || defined(OPENSSL_SYS_UEFI)
++#if defined(OPENSSL_SYS_WIN32) || defined(OPENSSL_SYS_VXWORKS) || defined(OPENSSL_SYS_UEFI) || defined(__wasi__)
+
+ int OPENSSL_issetugid(void)
+ {
+

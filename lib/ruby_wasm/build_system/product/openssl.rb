@@ -50,6 +50,9 @@ module RubyWasm
                       -D_WASI_EMULATED_MMAN
                       -DNO_CHMOD
                     ]
+        # FIXME(katei): hack to ignore compilation errors in apps
+        # it's ok because apps are not used at all
+        args.push("-Wno-implicit-function-declaration")
       end
       args + tools_args
     end

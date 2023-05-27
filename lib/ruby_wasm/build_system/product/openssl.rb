@@ -48,6 +48,7 @@ module RubyWasm
                       -D_WASI_EMULATED_SIGNAL
                       -D_WASI_EMULATED_PROCESS_CLOCKS
                       -D_WASI_EMULATED_MMAN
+                      -DNO_CHMOD
                     ]
       end
       args + tools_args
